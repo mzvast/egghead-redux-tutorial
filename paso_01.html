@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+<script src="https://npmcdn.com/expect/umd/expect.min.js"></script>
+<script id="jsbin-javascript">
+/* global expect*/
+'use strict';
+
+var counter = function counter(state, action) {
+  if (state === undefined) state = 0;
+
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+};
+
+expect(counter(0, { type: 'INCREMENT' })).toEqual(1);
+
+expect(counter(1, { type: 'INCREMENT' })).toEqual(2);
+
+expect(counter(2, { type: 'DECREMENT' })).toEqual(1);
+
+expect(counter(1, { type: 'DECREMENT' })).toEqual(0);
+
+expect(counter(1, { type: 'SOMETHING_ELSE' })).toEqual(1);
+
+expect(counter(undefined, {})).toEqual(0);
+
+console.log('Test Passed!');
+</script>
+</body>
+</html>
